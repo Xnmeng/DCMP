@@ -1,6 +1,5 @@
-# DCMP
+# DCMP: Dual-consistency Cross-modal Prompting for Open-World Semi-Supervised Learning
 
-Official core implementation of **DCMP: Dual-consistency Cross-modal Prompting for Open-World Semi-Supervised Learning**.
 
 ![DCMP framework](assets/framework.png)
 
