@@ -1,0 +1,12 @@
+python full_coprompt_owssl.py \
+  --dataset_name cifar10 \
+  --experiment_name cifar10_full_coprompt_exact \
+  --batch_size 128 \
+  --epochs 200 \
+  --n_ctx 4 \
+  --prompt_depth 12 \
+  --image_adapter_m 0.1 \
+  --text_adapter_m 0.2 \
+  --lambda_lcc_image 8.0 \
+  --lambda_lcc_text 8.0 \
+  --inference_mode csc

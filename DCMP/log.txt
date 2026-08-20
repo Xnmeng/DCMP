@@ -1,0 +1,784 @@
+2026-07-16 13:17:21,126 - INFO - Training flowers_prompt=9 with the following settings:
+2026-07-16 13:17:21,126 - INFO - Command-line arguments: output_dir=exp
+ experiment_name=flowers_prompt=9
+ seed=4
+ evaluate=False
+ dataset_name=flowers
+ backbone_name=ViT-B/16
+ cub_root=/home/lc/GCD_datasets/CUB
+ cub_retrieved_text_path=retrieved_text/cub_retrieved_text.npy
+ flowers_root=/home/lc/GCD_datasets
+ flowers_retrieved_text_path=retrieved_text/flowers_retrieved_text.npy
+ scars_root=/home/lc/GCD_datasets
+ scars_retrieved_text_path=retrieved_text/scars_retrieved_text.npy
+ pets_root=/home/lc/GCD_datasets
+ pets_retrieved_text_path=retrieved_text/pets_retrieved_text.npy
+ cifar10_root=/home/lc/GCD_datasets/cifar10
+ cifar10_retrieved_text_path=retrieved_text/cifar10_retrieved_text.npy
+ cifar100_root=/home/lc/GCD_datasets/cifar100
+ cifar100_retrieved_text_path=retrieved_text/cifar100_retrieved_text.npy
+ imagenet_root=/home/lc/GCD_datasets/imagenet/ILSVRC/Data/CLS-LOC
+ imagenet_retrieved_text_path=retrieved_text/imagenet_100_retrieved_text.npy
+ osr_split_dir=data/ssb_splits
+ epochs=100
+ base_lr=0.0005
+ classifier_lr=0.1
+ prompt_min_lr=5e-05
+ momentum=0.9
+ weight_decay=0.0001
+ num_workers=8
+ batch_size=64
+ prop_train_labels=0.5
+ use_ssb_splits=True
+ transform=imagenet
+ n_views=2
+ prompt_image_view_idx=0
+ frozen_image_view_idx=1
+ prompt_text_view_idx=0
+ frozen_text_view_idx=1
+ selecting_ratio=0.6
+ lambda_loss=0.2
+ warm_up_epochs=10
+ class_aligning_epochs=5
+ num_attributes=2
+ num_tags=3
+ tau_s=0.1
+ tau_u=0.05
+ tau_t_start=0.035
+ tau_t_end=0.02
+ warmup_teacher_temp_epochs=30
+ memax_weight=2
+ n_ctx=4
+ prompt_depth=9
+ image_adapter_reduction=4
+ text_adapter_reduction=4
+ image_adapter_m=0.1
+ text_adapter_m=0.2
+ lambda_contrast=1.0
+ lambda_lcc_image=4.0
+ lambda_lcc_text=4.0
+ lcc_criterion=cosine
+ inference_mode=soft
+ image_vote_weight=0.5
+ resume=
+ eval_only=False
+ enable_text_prompt=1
+ enable_image_prompt=1
+ image_size=224
+ train_classes=range(0, 51)
+ unlabeled_classes=range(51, 102)
+ num_labeled_classes=51
+ num_unlabeled_classes=51
+ log_path=exp/flowers_prompt=9-2026-07-16-13-17/logs/log.txt
+ model_path=exp/flowers_prompt=9-2026-07-16-13-17/models/model.pth
+ device=cuda
+2026-07-16 13:17:21,129 - INFO - Loading prompt-capable CLIP (backbone: ViT-B/16)
+2026-07-16 13:17:24,520 - INFO - Building full CoPrompt OWSSL model
+2026-07-16 13:17:26,774 - INFO - Turning off gradients in encoders and keeping only prompts/adapters/classifiers trainable
+2026-07-16 13:17:26,777 - INFO - Parameters that require gradients: ['prompt_learner.ctx', 'prompt_learner.deep_text_prompts.0', 'prompt_learner.deep_text_prompts.1', 'prompt_learner.deep_text_prompts.2', 'prompt_learner.deep_text_prompts.3', 'prompt_learner.deep_text_prompts.4', 'prompt_learner.deep_text_prompts.5', 'prompt_learner.deep_text_prompts.6', 'prompt_learner.deep_text_prompts.7', 'prompt_learner.ctx_proj.weight', 'prompt_learner.ctx_proj.bias', 'prompt_learner.deep_prompt_projections.0.weight', 'prompt_learner.deep_prompt_projections.0.bias', 'prompt_learner.deep_prompt_projections.1.weight', 'prompt_learner.deep_prompt_projections.1.bias', 'prompt_learner.deep_prompt_projections.2.weight', 'prompt_learner.deep_prompt_projections.2.bias', 'prompt_learner.deep_prompt_projections.3.weight', 'prompt_learner.deep_prompt_projections.3.bias', 'prompt_learner.deep_prompt_projections.4.weight', 'prompt_learner.deep_prompt_projections.4.bias', 'prompt_learner.deep_prompt_projections.5.weight', 'prompt_learner.deep_prompt_projections.5.bias', 'prompt_learner.deep_prompt_projections.6.weight', 'prompt_learner.deep_prompt_projections.6.bias', 'prompt_learner.deep_prompt_projections.7.weight', 'prompt_learner.deep_prompt_projections.7.bias', 'image_adapter.net.0.weight', 'image_adapter.net.2.weight', 'text_adapter.net.0.weight', 'text_adapter.net.2.weight', 'image_classifier.weight_g', 'image_classifier.weight_v', 'text_classifier.weight_g', 'text_classifier.weight_v']
+2026-07-16 13:17:27,085 - INFO - len of train dataset: 1020
+2026-07-16 13:17:27,085 - INFO - len of test dataset: 765
+2026-07-16 13:17:27,087 - INFO - Parameters in classifier with big lr: ['image_classifier.weight_g', 'image_classifier.weight_v', 'text_classifier.weight_g', 'text_classifier.weight_v']
+2026-07-16 13:17:27,088 - INFO - Selecting 4 high-confidence samples for co-teaching.
+2026-07-16 13:17:27,088 - INFO - Inference mode: soft
+2026-07-16 13:17:53,433 - INFO - Epoch 1/100, Total Loss: 10.6989, Base Loss: 8.6382, Con Loss: 1.5574, Pseudo Loss Image: 0.0000, Pseudo Loss Text: 0.0000, Lcc Image: 0.0316, Lcc Text: 0.0942
+2026-07-16 13:17:53,433 - INFO -    Param Group: classifier_head, Learning Rate: 0.100000
+2026-07-16 13:17:53,433 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000500
+2026-07-16 13:17:59,402 - INFO - Weighted Accuracies: All 0.3765 | Old 0.3765 | New 0.3765
+2026-07-16 13:18:00,530 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:18:01,712 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.3765 | Old 0.3765 | New 0.3765)
+2026-07-16 13:18:23,915 - INFO - Epoch 2/100, Total Loss: 8.1963, Base Loss: 6.3686, Con Loss: 1.3962, Pseudo Loss Image: 0.0000, Pseudo Loss Text: 0.0000, Lcc Image: 0.0291, Lcc Text: 0.0788
+2026-07-16 13:18:23,916 - INFO -    Param Group: classifier_head, Learning Rate: 0.099975
+2026-07-16 13:18:23,916 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000500
+2026-07-16 13:18:29,844 - INFO - Weighted Accuracies: All 0.5255 | Old 0.5882 | New 0.4941
+2026-07-16 13:18:31,226 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:18:32,814 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.5255 | Old 0.5882 | New 0.4941)
+2026-07-16 13:18:55,295 - INFO - Epoch 3/100, Total Loss: 7.2524, Base Loss: 5.5049, Con Loss: 1.3799, Pseudo Loss Image: 0.0000, Pseudo Loss Text: 0.0000, Lcc Image: 0.0282, Lcc Text: 0.0637
+2026-07-16 13:18:55,296 - INFO -    Param Group: classifier_head, Learning Rate: 0.099899
+2026-07-16 13:18:55,296 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000500
+2026-07-16 13:19:01,378 - INFO - Weighted Accuracies: All 0.5830 | Old 0.7059 | New 0.5216
+2026-07-16 13:19:03,074 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:19:04,560 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.5830 | Old 0.7059 | New 0.5216)
+2026-07-16 13:19:26,756 - INFO - Epoch 4/100, Total Loss: 6.8129, Base Loss: 5.0451, Con Loss: 1.4147, Pseudo Loss Image: 0.0000, Pseudo Loss Text: 0.0000, Lcc Image: 0.0273, Lcc Text: 0.0609
+2026-07-16 13:19:26,757 - INFO -    Param Group: classifier_head, Learning Rate: 0.099774
+2026-07-16 13:19:26,757 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000499
+2026-07-16 13:19:32,791 - INFO - Weighted Accuracies: All 0.5686 | Old 0.7137 | New 0.4961
+2026-07-16 13:19:34,868 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:19:57,688 - INFO - Epoch 5/100, Total Loss: 6.1228, Base Loss: 4.3986, Con Loss: 1.4008, Pseudo Loss Image: 0.0000, Pseudo Loss Text: 0.0000, Lcc Image: 0.0267, Lcc Text: 0.0542
+2026-07-16 13:19:57,689 - INFO -    Param Group: classifier_head, Learning Rate: 0.099598
+2026-07-16 13:19:57,689 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000498
+2026-07-16 13:20:03,686 - INFO - Weighted Accuracies: All 0.5935 | Old 0.7333 | New 0.5235
+2026-07-16 13:20:06,141 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:20:07,949 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.5935 | Old 0.7333 | New 0.5235)
+2026-07-16 13:20:30,403 - INFO - Epoch 6/100, Total Loss: 5.9068, Base Loss: 4.2072, Con Loss: 1.3845, Pseudo Loss Image: 0.0000, Pseudo Loss Text: 0.0000, Lcc Image: 0.0262, Lcc Text: 0.0526
+2026-07-16 13:20:30,404 - INFO -    Param Group: classifier_head, Learning Rate: 0.099373
+2026-07-16 13:20:30,404 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000497
+2026-07-16 13:20:36,386 - INFO - Weighted Accuracies: All 0.5660 | Old 0.7137 | New 0.4922
+2026-07-16 13:20:37,756 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:21:00,240 - INFO - Epoch 7/100, Total Loss: 5.6261, Base Loss: 3.9466, Con Loss: 1.3712, Pseudo Loss Image: 0.0000, Pseudo Loss Text: 0.0000, Lcc Image: 0.0270, Lcc Text: 0.0500
+2026-07-16 13:21:00,241 - INFO -    Param Group: classifier_head, Learning Rate: 0.099097
+2026-07-16 13:21:00,241 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000496
+2026-07-16 13:21:06,152 - INFO - Weighted Accuracies: All 0.6039 | Old 0.7961 | New 0.5078
+2026-07-16 13:21:08,294 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:21:09,976 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.6039 | Old 0.7961 | New 0.5078)
+2026-07-16 13:21:32,651 - INFO - Epoch 8/100, Total Loss: 5.3638, Base Loss: 3.7357, Con Loss: 1.3305, Pseudo Loss Image: 0.0000, Pseudo Loss Text: 0.0000, Lcc Image: 0.0274, Lcc Text: 0.0470
+2026-07-16 13:21:32,652 - INFO -    Param Group: classifier_head, Learning Rate: 0.098773
+2026-07-16 13:21:32,652 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000494
+2026-07-16 13:21:38,722 - INFO - Weighted Accuracies: All 0.5843 | Old 0.7216 | New 0.5157
+2026-07-16 13:21:40,257 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:22:02,751 - INFO - Epoch 9/100, Total Loss: 5.4360, Base Loss: 3.7344, Con Loss: 1.3989, Pseudo Loss Image: 0.0000, Pseudo Loss Text: 0.0000, Lcc Image: 0.0274, Lcc Text: 0.0483
+2026-07-16 13:22:02,751 - INFO -    Param Group: classifier_head, Learning Rate: 0.098399
+2026-07-16 13:22:02,751 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000493
+2026-07-16 13:22:08,864 - INFO - Weighted Accuracies: All 0.5778 | Old 0.7294 | New 0.5020
+2026-07-16 13:22:10,222 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:22:32,634 - INFO - Epoch 10/100, Total Loss: 5.3451, Base Loss: 3.7011, Con Loss: 1.3512, Pseudo Loss Image: 0.0000, Pseudo Loss Text: 0.0000, Lcc Image: 0.0272, Lcc Text: 0.0460
+2026-07-16 13:22:32,635 - INFO -    Param Group: classifier_head, Learning Rate: 0.097977
+2026-07-16 13:22:32,635 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000491
+2026-07-16 13:22:38,528 - INFO - Weighted Accuracies: All 0.5386 | Old 0.6863 | New 0.4647
+2026-07-16 13:22:39,831 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:23:02,348 - INFO - Epoch 11/100, Total Loss: 5.2260, Base Loss: 3.6303, Con Loss: 1.3115, Pseudo Loss Image: 0.0000, Pseudo Loss Text: 0.0000, Lcc Image: 0.0266, Lcc Text: 0.0445
+2026-07-16 13:23:02,349 - INFO -    Param Group: classifier_head, Learning Rate: 0.097506
+2026-07-16 13:23:02,349 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000489
+2026-07-16 13:23:08,432 - INFO - Weighted Accuracies: All 0.5556 | Old 0.7373 | New 0.4647
+2026-07-16 13:23:10,257 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:23:16,221 - INFO - len of text selected samples: 371
+2026-07-16 13:23:38,637 - INFO - Epoch 12/100, Total Loss: 8.7138, Base Loss: 3.6812, Con Loss: 1.3639, Pseudo Loss Image: 3.3750, Pseudo Loss Text: 0.0000, Lcc Image: 0.0279, Lcc Text: 0.0455
+2026-07-16 13:23:38,638 - INFO -    Param Group: classifier_head, Learning Rate: 0.096988
+2026-07-16 13:23:38,638 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000486
+2026-07-16 13:23:44,553 - INFO - Weighted Accuracies: All 0.6013 | Old 0.7451 | New 0.5294
+2026-07-16 13:23:46,454 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:23:52,411 - INFO - len of text selected samples: 374
+2026-07-16 13:24:14,910 - INFO - Epoch 13/100, Total Loss: 8.8469, Base Loss: 3.6993, Con Loss: 1.3672, Pseudo Loss Image: 3.5026, Pseudo Loss Text: 0.0000, Lcc Image: 0.0287, Lcc Text: 0.0408
+2026-07-16 13:24:14,910 - INFO -    Param Group: classifier_head, Learning Rate: 0.096422
+2026-07-16 13:24:14,910 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000484
+2026-07-16 13:24:20,833 - INFO - Weighted Accuracies: All 0.6667 | Old 0.8431 | New 0.5784
+2026-07-16 13:24:22,794 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:24:24,706 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.6667 | Old 0.8431 | New 0.5784)
+2026-07-16 13:24:30,861 - INFO - len of text selected samples: 381
+2026-07-16 13:24:53,041 - INFO - Epoch 14/100, Total Loss: 8.2181, Base Loss: 3.5752, Con Loss: 1.2976, Pseudo Loss Image: 3.0608, Pseudo Loss Text: 0.0000, Lcc Image: 0.0296, Lcc Text: 0.0416
+2026-07-16 13:24:53,042 - INFO -    Param Group: classifier_head, Learning Rate: 0.095810
+2026-07-16 13:24:53,042 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000481
+2026-07-16 13:24:58,984 - INFO - Weighted Accuracies: All 0.6706 | Old 0.8078 | New 0.6020
+2026-07-16 13:25:00,313 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:25:06,077 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.6706 | Old 0.8078 | New 0.6020)
+2026-07-16 13:25:12,371 - INFO - len of text selected samples: 382
+2026-07-16 13:25:35,074 - INFO - Epoch 15/100, Total Loss: 7.8030, Base Loss: 3.5094, Con Loss: 1.3399, Pseudo Loss Image: 2.6572, Pseudo Loss Text: 0.0000, Lcc Image: 0.0321, Lcc Text: 0.0420
+2026-07-16 13:25:35,075 - INFO -    Param Group: classifier_head, Learning Rate: 0.095151
+2026-07-16 13:25:35,075 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000478
+2026-07-16 13:25:41,033 - INFO - Weighted Accuracies: All 0.6641 | Old 0.8549 | New 0.5686
+2026-07-16 13:25:43,538 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:25:49,468 - INFO - len of text selected samples: 383
+2026-07-16 13:26:11,998 - INFO - Epoch 16/100, Total Loss: 7.7022, Base Loss: 3.4320, Con Loss: 1.3532, Pseudo Loss Image: 2.6406, Pseudo Loss Text: 0.0000, Lcc Image: 0.0304, Lcc Text: 0.0387
+2026-07-16 13:26:11,998 - INFO -    Param Group: classifier_head, Learning Rate: 0.094447
+2026-07-16 13:26:11,998 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000475
+2026-07-16 13:26:18,035 - INFO - Weighted Accuracies: All 0.6732 | Old 0.8235 | New 0.5980
+2026-07-16 13:26:19,928 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:26:21,944 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.6732 | Old 0.8235 | New 0.5980)
+2026-07-16 13:26:33,877 - INFO - len of image selected samples: 301
+2026-07-16 13:26:33,877 - INFO - len of text selected samples: 381
+2026-07-16 13:26:56,064 - INFO - Epoch 17/100, Total Loss: 9.4769, Base Loss: 3.4634, Con Loss: 1.3119, Pseudo Loss Image: 2.2318, Pseudo Loss Text: 2.1524, Lcc Image: 0.0335, Lcc Text: 0.0458
+2026-07-16 13:26:56,064 - INFO -    Param Group: classifier_head, Learning Rate: 0.093699
+2026-07-16 13:26:56,065 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000472
+2026-07-16 13:27:01,984 - INFO - Weighted Accuracies: All 0.6418 | Old 0.7373 | New 0.5941
+2026-07-16 13:27:03,718 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:27:15,722 - INFO - len of image selected samples: 308
+2026-07-16 13:27:15,723 - INFO - len of text selected samples: 378
+2026-07-16 13:27:38,280 - INFO - Epoch 18/100, Total Loss: 9.1599, Base Loss: 3.5600, Con Loss: 1.3352, Pseudo Loss Image: 2.3040, Pseudo Loss Text: 1.5917, Lcc Image: 0.0339, Lcc Text: 0.0583
+2026-07-16 13:27:38,281 - INFO -    Param Group: classifier_head, Learning Rate: 0.092906
+2026-07-16 13:27:38,281 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000468
+2026-07-16 13:27:44,241 - INFO - Weighted Accuracies: All 0.6562 | Old 0.8157 | New 0.5765
+2026-07-16 13:27:45,567 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:27:57,379 - INFO - len of image selected samples: 306
+2026-07-16 13:27:57,380 - INFO - len of text selected samples: 360
+2026-07-16 13:28:19,645 - INFO - Epoch 19/100, Total Loss: 8.6758, Base Loss: 3.4208, Con Loss: 1.2744, Pseudo Loss Image: 2.1372, Pseudo Loss Text: 1.4666, Lcc Image: 0.0361, Lcc Text: 0.0582
+2026-07-16 13:28:19,646 - INFO -    Param Group: classifier_head, Learning Rate: 0.092071
+2026-07-16 13:28:19,646 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000464
+2026-07-16 13:28:25,765 - INFO - Weighted Accuracies: All 0.6667 | Old 0.7843 | New 0.6078
+2026-07-16 13:28:27,093 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:28:38,847 - INFO - len of image selected samples: 329
+2026-07-16 13:28:38,848 - INFO - len of text selected samples: 370
+2026-07-16 13:29:01,226 - INFO - Epoch 20/100, Total Loss: 7.9638, Base Loss: 3.1403, Con Loss: 1.2987, Pseudo Loss Image: 1.8383, Pseudo Loss Text: 1.3270, Lcc Image: 0.0357, Lcc Text: 0.0541
+2026-07-16 13:29:01,226 - INFO -    Param Group: classifier_head, Learning Rate: 0.091193
+2026-07-16 13:29:01,226 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000460
+2026-07-16 13:29:07,234 - INFO - Weighted Accuracies: All 0.6993 | Old 0.7961 | New 0.6510
+2026-07-16 13:29:08,637 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:29:10,256 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.6993 | Old 0.7961 | New 0.6510)
+2026-07-16 13:29:21,952 - INFO - len of image selected samples: 340
+2026-07-16 13:29:21,953 - INFO - len of text selected samples: 368
+2026-07-16 13:29:44,126 - INFO - Epoch 21/100, Total Loss: 8.0819, Base Loss: 3.2780, Con Loss: 1.3129, Pseudo Loss Image: 1.7378, Pseudo Loss Text: 1.3975, Lcc Image: 0.0370, Lcc Text: 0.0519
+2026-07-16 13:29:44,126 - INFO -    Param Group: classifier_head, Learning Rate: 0.090273
+2026-07-16 13:29:44,127 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000456
+2026-07-16 13:29:50,047 - INFO - Weighted Accuracies: All 0.7320 | Old 0.8000 | New 0.6980
+2026-07-16 13:29:51,479 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:29:53,304 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.7320 | Old 0.8000 | New 0.6980)
+2026-07-16 13:30:05,254 - INFO - len of image selected samples: 338
+2026-07-16 13:30:05,255 - INFO - len of text selected samples: 369
+2026-07-16 13:30:27,567 - INFO - Epoch 22/100, Total Loss: 7.3345, Base Loss: 3.0514, Con Loss: 1.2868, Pseudo Loss Image: 1.6716, Pseudo Loss Text: 0.9708, Lcc Image: 0.0374, Lcc Text: 0.0511
+2026-07-16 13:30:27,568 - INFO -    Param Group: classifier_head, Learning Rate: 0.089313
+2026-07-16 13:30:27,568 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000452
+2026-07-16 13:30:33,458 - INFO - Weighted Accuracies: All 0.7333 | Old 0.8392 | New 0.6804
+2026-07-16 13:30:34,798 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:30:36,092 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.7333 | Old 0.8392 | New 0.6804)
+2026-07-16 13:30:47,867 - INFO - len of image selected samples: 355
+2026-07-16 13:30:47,867 - INFO - len of text selected samples: 375
+2026-07-16 13:31:10,205 - INFO - Epoch 23/100, Total Loss: 7.3122, Base Loss: 3.0301, Con Loss: 1.2978, Pseudo Loss Image: 1.5662, Pseudo Loss Text: 1.0769, Lcc Image: 0.0390, Lcc Text: 0.0463
+2026-07-16 13:31:10,205 - INFO -    Param Group: classifier_head, Learning Rate: 0.088314
+2026-07-16 13:31:10,205 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000447
+2026-07-16 13:31:16,160 - INFO - Weighted Accuracies: All 0.7359 | Old 0.8392 | New 0.6843
+2026-07-16 13:31:18,041 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:31:19,365 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.7359 | Old 0.8392 | New 0.6843)
+2026-07-16 13:31:31,083 - INFO - len of image selected samples: 357
+2026-07-16 13:31:31,083 - INFO - len of text selected samples: 376
+2026-07-16 13:31:53,327 - INFO - Epoch 24/100, Total Loss: 6.7336, Base Loss: 2.9718, Con Loss: 1.2559, Pseudo Loss Image: 1.2924, Pseudo Loss Text: 0.8579, Lcc Image: 0.0390, Lcc Text: 0.0500
+2026-07-16 13:31:53,328 - INFO -    Param Group: classifier_head, Learning Rate: 0.087276
+2026-07-16 13:31:53,328 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000443
+2026-07-16 13:31:59,232 - INFO - Weighted Accuracies: All 0.7346 | Old 0.8510 | New 0.6765
+2026-07-16 13:32:00,536 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:32:12,188 - INFO - len of image selected samples: 364
+2026-07-16 13:32:12,188 - INFO - len of text selected samples: 382
+2026-07-16 13:32:34,450 - INFO - Epoch 25/100, Total Loss: 6.6733, Base Loss: 2.8386, Con Loss: 1.1727, Pseudo Loss Image: 1.2747, Pseudo Loss Text: 1.0210, Lcc Image: 0.0409, Lcc Text: 0.0507
+2026-07-16 13:32:34,450 - INFO -    Param Group: classifier_head, Learning Rate: 0.086201
+2026-07-16 13:32:34,450 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000438
+2026-07-16 13:32:40,451 - INFO - Weighted Accuracies: All 0.7752 | Old 0.8549 | New 0.7353
+2026-07-16 13:32:41,856 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:32:43,265 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.7752 | Old 0.8549 | New 0.7353)
+2026-07-16 13:32:55,081 - INFO - len of image selected samples: 366
+2026-07-16 13:32:55,082 - INFO - len of text selected samples: 383
+2026-07-16 13:33:17,389 - INFO - Epoch 26/100, Total Loss: 6.4209, Base Loss: 3.0017, Con Loss: 1.2696, Pseudo Loss Image: 1.1151, Pseudo Loss Text: 0.6832, Lcc Image: 0.0425, Lcc Text: 0.0454
+2026-07-16 13:33:17,390 - INFO -    Param Group: classifier_head, Learning Rate: 0.085089
+2026-07-16 13:33:17,390 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000433
+2026-07-16 13:33:23,349 - INFO - Weighted Accuracies: All 0.7869 | Old 0.8824 | New 0.7392
+2026-07-16 13:33:24,739 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:33:26,221 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.7869 | Old 0.8824 | New 0.7392)
+2026-07-16 13:33:38,068 - INFO - len of image selected samples: 375
+2026-07-16 13:33:38,069 - INFO - len of text selected samples: 381
+2026-07-16 13:34:00,457 - INFO - Epoch 27/100, Total Loss: 6.5637, Base Loss: 2.9410, Con Loss: 1.2655, Pseudo Loss Image: 1.1654, Pseudo Loss Text: 0.8310, Lcc Image: 0.0416, Lcc Text: 0.0486
+2026-07-16 13:34:00,457 - INFO -    Param Group: classifier_head, Learning Rate: 0.083942
+2026-07-16 13:34:00,457 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000428
+2026-07-16 13:34:06,348 - INFO - Weighted Accuracies: All 0.7948 | Old 0.8745 | New 0.7549
+2026-07-16 13:34:07,938 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:34:09,297 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.7948 | Old 0.8745 | New 0.7549)
+2026-07-16 13:34:20,974 - INFO - len of image selected samples: 374
+2026-07-16 13:34:20,974 - INFO - len of text selected samples: 394
+2026-07-16 13:34:43,573 - INFO - Epoch 28/100, Total Loss: 6.1028, Base Loss: 2.9679, Con Loss: 1.2993, Pseudo Loss Image: 0.9182, Pseudo Loss Text: 0.5536, Lcc Image: 0.0425, Lcc Text: 0.0485
+2026-07-16 13:34:43,573 - INFO -    Param Group: classifier_head, Learning Rate: 0.082760
+2026-07-16 13:34:43,573 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000422
+2026-07-16 13:34:49,441 - INFO - Weighted Accuracies: All 0.8052 | Old 0.8706 | New 0.7725
+2026-07-16 13:34:50,778 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:34:52,264 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.8052 | Old 0.8706 | New 0.7725)
+2026-07-16 13:35:04,162 - INFO - len of image selected samples: 377
+2026-07-16 13:35:04,163 - INFO - len of text selected samples: 388
+2026-07-16 13:35:26,790 - INFO - Epoch 29/100, Total Loss: 5.9640, Base Loss: 2.8999, Con Loss: 1.2924, Pseudo Loss Image: 0.8864, Pseudo Loss Text: 0.5365, Lcc Image: 0.0436, Lcc Text: 0.0436
+2026-07-16 13:35:26,791 - INFO -    Param Group: classifier_head, Learning Rate: 0.081546
+2026-07-16 13:35:26,791 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000417
+2026-07-16 13:35:32,725 - INFO - Weighted Accuracies: All 0.8052 | Old 0.8667 | New 0.7745
+2026-07-16 13:35:34,116 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:35:46,119 - INFO - len of image selected samples: 384
+2026-07-16 13:35:46,119 - INFO - len of text selected samples: 388
+2026-07-16 13:36:08,772 - INFO - Epoch 30/100, Total Loss: 6.0488, Base Loss: 2.9234, Con Loss: 1.2725, Pseudo Loss Image: 0.8968, Pseudo Loss Text: 0.6082, Lcc Image: 0.0418, Lcc Text: 0.0451
+2026-07-16 13:36:08,772 - INFO -    Param Group: classifier_head, Learning Rate: 0.080300
+2026-07-16 13:36:08,772 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000411
+2026-07-16 13:36:14,716 - INFO - Weighted Accuracies: All 0.8105 | Old 0.8627 | New 0.7843
+2026-07-16 13:36:16,114 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:36:18,255 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.8105 | Old 0.8627 | New 0.7843)
+2026-07-16 13:36:30,081 - INFO - len of image selected samples: 380
+2026-07-16 13:36:30,081 - INFO - len of text selected samples: 381
+2026-07-16 13:36:52,449 - INFO - Epoch 31/100, Total Loss: 5.9287, Base Loss: 2.9592, Con Loss: 1.2862, Pseudo Loss Image: 0.7878, Pseudo Loss Text: 0.5378, Lcc Image: 0.0428, Lcc Text: 0.0466
+2026-07-16 13:36:52,450 - INFO -    Param Group: classifier_head, Learning Rate: 0.079024
+2026-07-16 13:36:52,450 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000406
+2026-07-16 13:36:58,391 - INFO - Weighted Accuracies: All 0.8026 | Old 0.8667 | New 0.7706
+2026-07-16 13:37:00,463 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:37:12,189 - INFO - len of image selected samples: 384
+2026-07-16 13:37:12,189 - INFO - len of text selected samples: 387
+2026-07-16 13:37:34,714 - INFO - Epoch 32/100, Total Loss: 5.7018, Base Loss: 2.8330, Con Loss: 1.2276, Pseudo Loss Image: 0.8140, Pseudo Loss Text: 0.4837, Lcc Image: 0.0423, Lcc Text: 0.0435
+2026-07-16 13:37:34,715 - INFO -    Param Group: classifier_head, Learning Rate: 0.077718
+2026-07-16 13:37:34,715 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000400
+2026-07-16 13:37:40,674 - INFO - Weighted Accuracies: All 0.8157 | Old 0.8588 | New 0.7941
+2026-07-16 13:37:42,775 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:37:44,230 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.8157 | Old 0.8588 | New 0.7941)
+2026-07-16 13:37:56,284 - INFO - len of image selected samples: 386
+2026-07-16 13:37:56,285 - INFO - len of text selected samples: 388
+2026-07-16 13:38:18,686 - INFO - Epoch 33/100, Total Loss: 5.6125, Base Loss: 2.8374, Con Loss: 1.2561, Pseudo Loss Image: 0.6553, Pseudo Loss Text: 0.5128, Lcc Image: 0.0423, Lcc Text: 0.0454
+2026-07-16 13:38:18,686 - INFO -    Param Group: classifier_head, Learning Rate: 0.076385
+2026-07-16 13:38:18,686 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000394
+2026-07-16 13:38:24,610 - INFO - Weighted Accuracies: All 0.8248 | Old 0.8627 | New 0.8059
+2026-07-16 13:38:26,387 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:38:27,775 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.8248 | Old 0.8627 | New 0.8059)
+2026-07-16 13:38:39,789 - INFO - len of image selected samples: 383
+2026-07-16 13:38:39,790 - INFO - len of text selected samples: 392
+2026-07-16 13:39:02,127 - INFO - Epoch 34/100, Total Loss: 5.5504, Base Loss: 2.8892, Con Loss: 1.2338, Pseudo Loss Image: 0.6294, Pseudo Loss Text: 0.4671, Lcc Image: 0.0409, Lcc Text: 0.0419
+2026-07-16 13:39:02,128 - INFO -    Param Group: classifier_head, Learning Rate: 0.075025
+2026-07-16 13:39:02,128 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000388
+2026-07-16 13:39:08,162 - INFO - Weighted Accuracies: All 0.8235 | Old 0.8627 | New 0.8039
+2026-07-16 13:39:09,728 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:39:21,641 - INFO - len of image selected samples: 390
+2026-07-16 13:39:21,642 - INFO - len of text selected samples: 391
+2026-07-16 13:39:44,225 - INFO - Epoch 35/100, Total Loss: 5.4564, Base Loss: 2.9275, Con Loss: 1.2749, Pseudo Loss Image: 0.5750, Pseudo Loss Text: 0.3446, Lcc Image: 0.0409, Lcc Text: 0.0427
+2026-07-16 13:39:44,226 - INFO -    Param Group: classifier_head, Learning Rate: 0.073640
+2026-07-16 13:39:44,226 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000381
+2026-07-16 13:39:50,175 - INFO - Weighted Accuracies: All 0.8418 | Old 0.8431 | New 0.8412
+2026-07-16 13:39:51,616 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:39:53,539 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.8418 | Old 0.8431 | New 0.8412)
+2026-07-16 13:40:05,429 - INFO - len of image selected samples: 396
+2026-07-16 13:40:05,429 - INFO - len of text selected samples: 396
+2026-07-16 13:40:27,671 - INFO - Epoch 36/100, Total Loss: 5.6691, Base Loss: 2.9576, Con Loss: 1.2743, Pseudo Loss Image: 0.6749, Pseudo Loss Text: 0.4415, Lcc Image: 0.0398, Lcc Text: 0.0404
+2026-07-16 13:40:27,671 - INFO -    Param Group: classifier_head, Learning Rate: 0.072231
+2026-07-16 13:40:27,672 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000375
+2026-07-16 13:40:33,645 - INFO - Weighted Accuracies: All 0.8405 | Old 0.8471 | New 0.8373
+2026-07-16 13:40:36,166 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:40:48,295 - INFO - len of image selected samples: 393
+2026-07-16 13:40:48,295 - INFO - len of text selected samples: 392
+2026-07-16 13:41:10,842 - INFO - Epoch 37/100, Total Loss: 5.4395, Base Loss: 2.9114, Con Loss: 1.2602, Pseudo Loss Image: 0.5224, Pseudo Loss Text: 0.4054, Lcc Image: 0.0429, Lcc Text: 0.0421
+2026-07-16 13:41:10,843 - INFO -    Param Group: classifier_head, Learning Rate: 0.070800
+2026-07-16 13:41:10,843 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000368
+2026-07-16 13:41:16,825 - INFO - Weighted Accuracies: All 0.8562 | Old 0.8667 | New 0.8510
+2026-07-16 13:41:19,476 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:41:21,085 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.8562 | Old 0.8667 | New 0.8510)
+2026-07-16 13:41:33,049 - INFO - len of image selected samples: 396
+2026-07-16 13:41:33,049 - INFO - len of text selected samples: 393
+2026-07-16 13:41:55,332 - INFO - Epoch 38/100, Total Loss: 5.1593, Base Loss: 2.8709, Con Loss: 1.2478, Pseudo Loss Image: 0.4479, Pseudo Loss Text: 0.2568, Lcc Image: 0.0398, Lcc Text: 0.0441
+2026-07-16 13:41:55,332 - INFO -    Param Group: classifier_head, Learning Rate: 0.069348
+2026-07-16 13:41:55,332 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000362
+2026-07-16 13:42:01,293 - INFO - Weighted Accuracies: All 0.8614 | Old 0.8667 | New 0.8588
+2026-07-16 13:42:02,833 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:42:04,256 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.8614 | Old 0.8667 | New 0.8588)
+2026-07-16 13:42:16,385 - INFO - len of image selected samples: 397
+2026-07-16 13:42:16,386 - INFO - len of text selected samples: 396
+2026-07-16 13:42:38,665 - INFO - Epoch 39/100, Total Loss: 5.1494, Base Loss: 2.8466, Con Loss: 1.2382, Pseudo Loss Image: 0.4734, Pseudo Loss Text: 0.2583, Lcc Image: 0.0408, Lcc Text: 0.0424
+2026-07-16 13:42:38,666 - INFO -    Param Group: classifier_head, Learning Rate: 0.067876
+2026-07-16 13:42:38,666 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000355
+2026-07-16 13:42:44,690 - INFO - Weighted Accuracies: All 0.8575 | Old 0.8667 | New 0.8529
+2026-07-16 13:42:46,457 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:42:58,329 - INFO - len of image selected samples: 394
+2026-07-16 13:42:58,330 - INFO - len of text selected samples: 396
+2026-07-16 13:43:20,711 - INFO - Epoch 40/100, Total Loss: 5.4209, Base Loss: 2.8973, Con Loss: 1.2585, Pseudo Loss Image: 0.5535, Pseudo Loss Text: 0.3860, Lcc Image: 0.0400, Lcc Text: 0.0414
+2026-07-16 13:43:20,711 - INFO -    Param Group: classifier_head, Learning Rate: 0.066387
+2026-07-16 13:43:20,712 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000349
+2026-07-16 13:43:26,668 - INFO - Weighted Accuracies: All 0.8601 | Old 0.8471 | New 0.8667
+2026-07-16 13:43:28,045 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:43:39,959 - INFO - len of image selected samples: 394
+2026-07-16 13:43:39,959 - INFO - len of text selected samples: 397
+2026-07-16 13:44:02,311 - INFO - Epoch 41/100, Total Loss: 5.1500, Base Loss: 2.8265, Con Loss: 1.2348, Pseudo Loss Image: 0.4180, Pseudo Loss Text: 0.3336, Lcc Image: 0.0418, Lcc Text: 0.0425
+2026-07-16 13:44:02,311 - INFO -    Param Group: classifier_head, Learning Rate: 0.064881
+2026-07-16 13:44:02,312 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000342
+2026-07-16 13:44:08,248 - INFO - Weighted Accuracies: All 0.8484 | Old 0.8431 | New 0.8510
+2026-07-16 13:44:09,688 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:44:21,580 - INFO - len of image selected samples: 398
+2026-07-16 13:44:21,581 - INFO - len of text selected samples: 395
+2026-07-16 13:44:43,762 - INFO - Epoch 42/100, Total Loss: 5.0282, Base Loss: 2.8809, Con Loss: 1.2250, Pseudo Loss Image: 0.3748, Pseudo Loss Text: 0.2199, Lcc Image: 0.0409, Lcc Text: 0.0409
+2026-07-16 13:44:43,763 - INFO -    Param Group: classifier_head, Learning Rate: 0.063360
+2026-07-16 13:44:43,763 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000335
+2026-07-16 13:44:49,702 - INFO - Weighted Accuracies: All 0.8484 | Old 0.8863 | New 0.8294
+2026-07-16 13:44:51,552 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:45:03,442 - INFO - len of image selected samples: 398
+2026-07-16 13:45:03,442 - INFO - len of text selected samples: 398
+2026-07-16 13:45:25,940 - INFO - Epoch 43/100, Total Loss: 4.9871, Base Loss: 2.8983, Con Loss: 1.2271, Pseudo Loss Image: 0.3127, Pseudo Loss Text: 0.2283, Lcc Image: 0.0384, Lcc Text: 0.0418
+2026-07-16 13:45:25,940 - INFO -    Param Group: classifier_head, Learning Rate: 0.061826
+2026-07-16 13:45:25,941 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000328
+2026-07-16 13:45:31,815 - INFO - Weighted Accuracies: All 0.8549 | Old 0.8510 | New 0.8569
+2026-07-16 13:45:33,160 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:45:45,065 - INFO - len of image selected samples: 397
+2026-07-16 13:45:45,066 - INFO - len of text selected samples: 400
+2026-07-16 13:46:07,572 - INFO - Epoch 44/100, Total Loss: 5.0582, Base Loss: 2.8492, Con Loss: 1.2323, Pseudo Loss Image: 0.3735, Pseudo Loss Text: 0.2826, Lcc Image: 0.0378, Lcc Text: 0.0424
+2026-07-16 13:46:07,572 - INFO -    Param Group: classifier_head, Learning Rate: 0.060280
+2026-07-16 13:46:07,573 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000321
+2026-07-16 13:46:13,597 - INFO - Weighted Accuracies: All 0.8588 | Old 0.8510 | New 0.8627
+2026-07-16 13:46:14,994 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:46:26,843 - INFO - len of image selected samples: 397
+2026-07-16 13:46:26,844 - INFO - len of text selected samples: 400
+2026-07-16 13:46:49,515 - INFO - Epoch 45/100, Total Loss: 4.8746, Base Loss: 2.7865, Con Loss: 1.2161, Pseudo Loss Image: 0.3934, Pseudo Loss Text: 0.1474, Lcc Image: 0.0385, Lcc Text: 0.0443
+2026-07-16 13:46:49,515 - INFO -    Param Group: classifier_head, Learning Rate: 0.058724
+2026-07-16 13:46:49,515 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000314
+2026-07-16 13:46:55,512 - INFO - Weighted Accuracies: All 0.8601 | Old 0.8471 | New 0.8667
+2026-07-16 13:46:57,871 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:47:09,775 - INFO - len of image selected samples: 402
+2026-07-16 13:47:09,775 - INFO - len of text selected samples: 398
+2026-07-16 13:47:32,284 - INFO - Epoch 46/100, Total Loss: 5.1271, Base Loss: 2.8885, Con Loss: 1.2521, Pseudo Loss Image: 0.4151, Pseudo Loss Text: 0.2569, Lcc Image: 0.0387, Lcc Text: 0.0399
+2026-07-16 13:47:32,284 - INFO -    Param Group: classifier_head, Learning Rate: 0.057159
+2026-07-16 13:47:32,285 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000307
+2026-07-16 13:47:38,417 - INFO - Weighted Accuracies: All 0.8641 | Old 0.8588 | New 0.8667
+2026-07-16 13:47:39,974 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:47:41,439 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.8641 | Old 0.8588 | New 0.8667)
+2026-07-16 13:47:53,618 - INFO - len of image selected samples: 400
+2026-07-16 13:47:53,618 - INFO - len of text selected samples: 399
+2026-07-16 13:48:15,971 - INFO - Epoch 47/100, Total Loss: 4.9032, Base Loss: 2.8007, Con Loss: 1.2166, Pseudo Loss Image: 0.3137, Pseudo Loss Text: 0.2504, Lcc Image: 0.0380, Lcc Text: 0.0424
+2026-07-16 13:48:15,972 - INFO -    Param Group: classifier_head, Learning Rate: 0.055586
+2026-07-16 13:48:15,972 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000300
+2026-07-16 13:48:21,952 - INFO - Weighted Accuracies: All 0.8706 | Old 0.8510 | New 0.8804
+2026-07-16 13:48:23,414 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:48:25,010 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.8706 | Old 0.8510 | New 0.8804)
+2026-07-16 13:48:36,832 - INFO - len of image selected samples: 401
+2026-07-16 13:48:36,832 - INFO - len of text selected samples: 399
+2026-07-16 13:48:59,359 - INFO - Epoch 48/100, Total Loss: 4.9372, Base Loss: 2.8208, Con Loss: 1.2007, Pseudo Loss Image: 0.3292, Pseudo Loss Text: 0.2844, Lcc Image: 0.0375, Lcc Text: 0.0380
+2026-07-16 13:48:59,360 - INFO -    Param Group: classifier_head, Learning Rate: 0.054009
+2026-07-16 13:48:59,360 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000293
+2026-07-16 13:49:05,313 - INFO - Weighted Accuracies: All 0.8654 | Old 0.8588 | New 0.8686
+2026-07-16 13:49:07,301 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:49:19,404 - INFO - len of image selected samples: 402
+2026-07-16 13:49:19,404 - INFO - len of text selected samples: 403
+2026-07-16 13:49:41,859 - INFO - Epoch 49/100, Total Loss: 5.0135, Base Loss: 2.8530, Con Loss: 1.2141, Pseudo Loss Image: 0.3809, Pseudo Loss Text: 0.2590, Lcc Image: 0.0358, Lcc Text: 0.0408
+2026-07-16 13:49:41,860 - INFO -    Param Group: classifier_head, Learning Rate: 0.052427
+2026-07-16 13:49:41,860 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000286
+2026-07-16 13:49:47,803 - INFO - Weighted Accuracies: All 0.8693 | Old 0.8549 | New 0.8765
+2026-07-16 13:49:49,165 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:50:01,032 - INFO - len of image selected samples: 400
+2026-07-16 13:50:01,032 - INFO - len of text selected samples: 405
+2026-07-16 13:50:23,352 - INFO - Epoch 50/100, Total Loss: 4.9406, Base Loss: 2.8425, Con Loss: 1.2116, Pseudo Loss Image: 0.3460, Pseudo Loss Text: 0.2221, Lcc Image: 0.0390, Lcc Text: 0.0406
+2026-07-16 13:50:23,352 - INFO -    Param Group: classifier_head, Learning Rate: 0.050843
+2026-07-16 13:50:23,353 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000279
+2026-07-16 13:50:29,270 - INFO - Weighted Accuracies: All 0.8680 | Old 0.8510 | New 0.8765
+2026-07-16 13:50:30,859 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:50:42,696 - INFO - len of image selected samples: 401
+2026-07-16 13:50:42,697 - INFO - len of text selected samples: 403
+2026-07-16 13:51:05,151 - INFO - Epoch 51/100, Total Loss: 4.8985, Base Loss: 2.8681, Con Loss: 1.1945, Pseudo Loss Image: 0.2944, Pseudo Loss Text: 0.2260, Lcc Image: 0.0369, Lcc Text: 0.0420
+2026-07-16 13:51:05,152 - INFO -    Param Group: classifier_head, Learning Rate: 0.049257
+2026-07-16 13:51:05,152 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000271
+2026-07-16 13:51:11,087 - INFO - Weighted Accuracies: All 0.8667 | Old 0.8627 | New 0.8686
+2026-07-16 13:51:12,585 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:51:24,329 - INFO - len of image selected samples: 399
+2026-07-16 13:51:24,329 - INFO - len of text selected samples: 402
+2026-07-16 13:51:47,006 - INFO - Epoch 52/100, Total Loss: 4.7417, Base Loss: 2.7482, Con Loss: 1.1672, Pseudo Loss Image: 0.3321, Pseudo Loss Text: 0.1930, Lcc Image: 0.0343, Lcc Text: 0.0410
+2026-07-16 13:51:47,006 - INFO -    Param Group: classifier_head, Learning Rate: 0.047673
+2026-07-16 13:51:47,006 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000264
+2026-07-16 13:51:52,886 - INFO - Weighted Accuracies: All 0.8680 | Old 0.8588 | New 0.8725
+2026-07-16 13:51:54,294 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:52:06,182 - INFO - len of image selected samples: 402
+2026-07-16 13:52:06,182 - INFO - len of text selected samples: 403
+2026-07-16 13:52:28,793 - INFO - Epoch 53/100, Total Loss: 4.8353, Base Loss: 2.8114, Con Loss: 1.2132, Pseudo Loss Image: 0.2578, Pseudo Loss Text: 0.2462, Lcc Image: 0.0368, Lcc Text: 0.0399
+2026-07-16 13:52:28,793 - INFO -    Param Group: classifier_head, Learning Rate: 0.046091
+2026-07-16 13:52:28,793 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000257
+2026-07-16 13:52:34,689 - INFO - Weighted Accuracies: All 0.8719 | Old 0.8588 | New 0.8784
+2026-07-16 13:52:36,105 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:52:37,418 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.8719 | Old 0.8588 | New 0.8784)
+2026-07-16 13:52:49,358 - INFO - len of image selected samples: 404
+2026-07-16 13:52:49,359 - INFO - len of text selected samples: 405
+2026-07-16 13:53:11,669 - INFO - Epoch 54/100, Total Loss: 4.8251, Base Loss: 2.8420, Con Loss: 1.2551, Pseudo Loss Image: 0.2488, Pseudo Loss Text: 0.1631, Lcc Image: 0.0383, Lcc Text: 0.0407
+2026-07-16 13:53:11,670 - INFO -    Param Group: classifier_head, Learning Rate: 0.044514
+2026-07-16 13:53:11,670 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000250
+2026-07-16 13:53:17,625 - INFO - Weighted Accuracies: All 0.8614 | Old 0.8627 | New 0.8608
+2026-07-16 13:53:18,967 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:53:31,044 - INFO - len of image selected samples: 400
+2026-07-16 13:53:31,044 - INFO - len of text selected samples: 404
+2026-07-16 13:53:53,461 - INFO - Epoch 55/100, Total Loss: 4.8733, Base Loss: 2.8926, Con Loss: 1.2119, Pseudo Loss Image: 0.2616, Pseudo Loss Text: 0.1976, Lcc Image: 0.0361, Lcc Text: 0.0413
+2026-07-16 13:53:53,461 - INFO -    Param Group: classifier_head, Learning Rate: 0.042941
+2026-07-16 13:53:53,461 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000243
+2026-07-16 13:53:59,385 - INFO - Weighted Accuracies: All 0.8706 | Old 0.8627 | New 0.8745
+2026-07-16 13:54:01,581 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:54:13,626 - INFO - len of image selected samples: 402
+2026-07-16 13:54:13,626 - INFO - len of text selected samples: 405
+2026-07-16 13:54:35,912 - INFO - Epoch 56/100, Total Loss: 4.9407, Base Loss: 2.9031, Con Loss: 1.2349, Pseudo Loss Image: 0.2941, Pseudo Loss Text: 0.2009, Lcc Image: 0.0358, Lcc Text: 0.0411
+2026-07-16 13:54:35,913 - INFO -    Param Group: classifier_head, Learning Rate: 0.041376
+2026-07-16 13:54:35,913 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000236
+2026-07-16 13:54:41,856 - INFO - Weighted Accuracies: All 0.8667 | Old 0.8549 | New 0.8725
+2026-07-16 13:54:43,169 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:54:54,978 - INFO - len of image selected samples: 404
+2026-07-16 13:54:54,978 - INFO - len of text selected samples: 406
+2026-07-16 13:55:17,499 - INFO - Epoch 57/100, Total Loss: 4.7977, Base Loss: 2.8149, Con Loss: 1.1983, Pseudo Loss Image: 0.3463, Pseudo Loss Text: 0.1327, Lcc Image: 0.0369, Lcc Text: 0.0395
+2026-07-16 13:55:17,500 - INFO -    Param Group: classifier_head, Learning Rate: 0.039820
+2026-07-16 13:55:17,500 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000229
+2026-07-16 13:55:23,333 - INFO - Weighted Accuracies: All 0.8667 | Old 0.8549 | New 0.8725
+2026-07-16 13:55:24,727 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:55:36,792 - INFO - len of image selected samples: 404
+2026-07-16 13:55:36,792 - INFO - len of text selected samples: 405
+2026-07-16 13:55:59,389 - INFO - Epoch 58/100, Total Loss: 4.9419, Base Loss: 2.9347, Con Loss: 1.2364, Pseudo Loss Image: 0.2968, Pseudo Loss Text: 0.1619, Lcc Image: 0.0365, Lcc Text: 0.0415
+2026-07-16 13:55:59,389 - INFO -    Param Group: classifier_head, Learning Rate: 0.038274
+2026-07-16 13:55:59,390 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000222
+2026-07-16 13:56:05,293 - INFO - Weighted Accuracies: All 0.8680 | Old 0.8510 | New 0.8765
+2026-07-16 13:56:06,642 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:56:18,704 - INFO - len of image selected samples: 403
+2026-07-16 13:56:18,704 - INFO - len of text selected samples: 403
+2026-07-16 13:56:41,543 - INFO - Epoch 59/100, Total Loss: 4.7023, Base Loss: 2.7776, Con Loss: 1.2294, Pseudo Loss Image: 0.2177, Pseudo Loss Text: 0.1733, Lcc Image: 0.0356, Lcc Text: 0.0404
+2026-07-16 13:56:41,543 - INFO -    Param Group: classifier_head, Learning Rate: 0.036740
+2026-07-16 13:56:41,543 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000215
+2026-07-16 13:56:47,470 - INFO - Weighted Accuracies: All 0.8758 | Old 0.8706 | New 0.8784
+2026-07-16 13:56:48,950 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:56:50,343 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.8758 | Old 0.8706 | New 0.8784)
+2026-07-16 13:57:02,295 - INFO - len of image selected samples: 404
+2026-07-16 13:57:02,295 - INFO - len of text selected samples: 405
+2026-07-16 13:57:24,782 - INFO - Epoch 60/100, Total Loss: 4.7775, Base Loss: 2.8619, Con Loss: 1.2222, Pseudo Loss Image: 0.2280, Pseudo Loss Text: 0.1630, Lcc Image: 0.0356, Lcc Text: 0.0399
+2026-07-16 13:57:24,783 - INFO -    Param Group: classifier_head, Learning Rate: 0.035219
+2026-07-16 13:57:24,783 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000208
+2026-07-16 13:57:30,737 - INFO - Weighted Accuracies: All 0.8693 | Old 0.8745 | New 0.8667
+2026-07-16 13:57:32,275 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:57:44,222 - INFO - len of image selected samples: 404
+2026-07-16 13:57:44,222 - INFO - len of text selected samples: 405
+2026-07-16 13:58:06,901 - INFO - Epoch 61/100, Total Loss: 4.6789, Base Loss: 2.8274, Con Loss: 1.2008, Pseudo Loss Image: 0.2055, Pseudo Loss Text: 0.1315, Lcc Image: 0.0372, Lcc Text: 0.0413
+2026-07-16 13:58:06,902 - INFO -    Param Group: classifier_head, Learning Rate: 0.033713
+2026-07-16 13:58:06,903 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000201
+2026-07-16 13:58:12,796 - INFO - Weighted Accuracies: All 0.8614 | Old 0.8510 | New 0.8667
+2026-07-16 13:58:14,329 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:58:26,210 - INFO - len of image selected samples: 404
+2026-07-16 13:58:26,210 - INFO - len of text selected samples: 407
+2026-07-16 13:58:48,811 - INFO - Epoch 62/100, Total Loss: 4.8611, Base Loss: 2.8809, Con Loss: 1.2323, Pseudo Loss Image: 0.2796, Pseudo Loss Text: 0.1582, Lcc Image: 0.0363, Lcc Text: 0.0412
+2026-07-16 13:58:48,812 - INFO -    Param Group: classifier_head, Learning Rate: 0.032224
+2026-07-16 13:58:48,812 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000195
+2026-07-16 13:58:54,678 - INFO - Weighted Accuracies: All 0.8693 | Old 0.8549 | New 0.8765
+2026-07-16 13:58:56,422 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:59:08,385 - INFO - len of image selected samples: 404
+2026-07-16 13:59:08,385 - INFO - len of text selected samples: 404
+2026-07-16 13:59:31,007 - INFO - Epoch 63/100, Total Loss: 4.6849, Base Loss: 2.7548, Con Loss: 1.1848, Pseudo Loss Image: 0.2521, Pseudo Loss Text: 0.1918, Lcc Image: 0.0350, Lcc Text: 0.0404
+2026-07-16 13:59:31,008 - INFO -    Param Group: classifier_head, Learning Rate: 0.030752
+2026-07-16 13:59:31,008 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000188
+2026-07-16 13:59:36,902 - INFO - Weighted Accuracies: All 0.8693 | Old 0.8549 | New 0.8765
+2026-07-16 13:59:38,246 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 13:59:50,089 - INFO - len of image selected samples: 404
+2026-07-16 13:59:50,090 - INFO - len of text selected samples: 405
+2026-07-16 14:00:12,591 - INFO - Epoch 64/100, Total Loss: 4.7199, Base Loss: 2.7938, Con Loss: 1.1970, Pseudo Loss Image: 0.2567, Pseudo Loss Text: 0.1671, Lcc Image: 0.0353, Lcc Text: 0.0410
+2026-07-16 14:00:12,592 - INFO -    Param Group: classifier_head, Learning Rate: 0.029300
+2026-07-16 14:00:12,592 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000182
+2026-07-16 14:00:18,526 - INFO - Weighted Accuracies: All 0.8706 | Old 0.8510 | New 0.8804
+2026-07-16 14:00:20,184 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:00:32,087 - INFO - len of image selected samples: 405
+2026-07-16 14:00:32,088 - INFO - len of text selected samples: 404
+2026-07-16 14:00:54,423 - INFO - Epoch 65/100, Total Loss: 4.6707, Base Loss: 2.8475, Con Loss: 1.2115, Pseudo Loss Image: 0.2040, Pseudo Loss Text: 0.1086, Lcc Image: 0.0346, Lcc Text: 0.0402
+2026-07-16 14:00:54,424 - INFO -    Param Group: classifier_head, Learning Rate: 0.027869
+2026-07-16 14:00:54,424 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000175
+2026-07-16 14:01:00,335 - INFO - Weighted Accuracies: All 0.8627 | Old 0.8549 | New 0.8667
+2026-07-16 14:01:02,393 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:01:14,424 - INFO - len of image selected samples: 405
+2026-07-16 14:01:14,425 - INFO - len of text selected samples: 407
+2026-07-16 14:01:36,854 - INFO - Epoch 66/100, Total Loss: 4.7214, Base Loss: 2.8403, Con Loss: 1.2053, Pseudo Loss Image: 0.2333, Pseudo Loss Text: 0.1494, Lcc Image: 0.0337, Lcc Text: 0.0396
+2026-07-16 14:01:36,854 - INFO -    Param Group: classifier_head, Learning Rate: 0.026460
+2026-07-16 14:01:36,855 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000169
+2026-07-16 14:01:42,788 - INFO - Weighted Accuracies: All 0.8654 | Old 0.8706 | New 0.8627
+2026-07-16 14:01:44,593 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:01:56,641 - INFO - len of image selected samples: 406
+2026-07-16 14:01:56,641 - INFO - len of text selected samples: 408
+2026-07-16 14:02:18,943 - INFO - Epoch 67/100, Total Loss: 4.6626, Base Loss: 2.7929, Con Loss: 1.2056, Pseudo Loss Image: 0.1667, Pseudo Loss Text: 0.1837, Lcc Image: 0.0366, Lcc Text: 0.0418
+2026-07-16 14:02:18,944 - INFO -    Param Group: classifier_head, Learning Rate: 0.025075
+2026-07-16 14:02:18,944 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000163
+2026-07-16 14:02:24,823 - INFO - Weighted Accuracies: All 0.8719 | Old 0.8627 | New 0.8765
+2026-07-16 14:02:26,239 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:02:38,039 - INFO - len of image selected samples: 406
+2026-07-16 14:02:38,040 - INFO - len of text selected samples: 407
+2026-07-16 14:03:00,386 - INFO - Epoch 68/100, Total Loss: 4.8837, Base Loss: 2.9040, Con Loss: 1.2395, Pseudo Loss Image: 0.2678, Pseudo Loss Text: 0.1665, Lcc Image: 0.0353, Lcc Text: 0.0411
+2026-07-16 14:03:00,387 - INFO -    Param Group: classifier_head, Learning Rate: 0.023715
+2026-07-16 14:03:00,387 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000156
+2026-07-16 14:03:06,409 - INFO - Weighted Accuracies: All 0.8654 | Old 0.8549 | New 0.8706
+2026-07-16 14:03:07,917 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:03:19,902 - INFO - len of image selected samples: 405
+2026-07-16 14:03:19,903 - INFO - len of text selected samples: 408
+2026-07-16 14:03:42,406 - INFO - Epoch 69/100, Total Loss: 4.8801, Base Loss: 2.9125, Con Loss: 1.2343, Pseudo Loss Image: 0.2596, Pseudo Loss Text: 0.1826, Lcc Image: 0.0335, Lcc Text: 0.0393
+2026-07-16 14:03:42,406 - INFO -    Param Group: classifier_head, Learning Rate: 0.022382
+2026-07-16 14:03:42,406 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000150
+2026-07-16 14:03:48,339 - INFO - Weighted Accuracies: All 0.8641 | Old 0.8627 | New 0.8647
+2026-07-16 14:03:49,696 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:04:01,589 - INFO - len of image selected samples: 408
+2026-07-16 14:04:01,590 - INFO - len of text selected samples: 408
+2026-07-16 14:04:24,115 - INFO - Epoch 70/100, Total Loss: 4.8047, Base Loss: 2.8558, Con Loss: 1.2138, Pseudo Loss Image: 0.2354, Pseudo Loss Text: 0.1945, Lcc Image: 0.0344, Lcc Text: 0.0419
+2026-07-16 14:04:24,116 - INFO -    Param Group: classifier_head, Learning Rate: 0.021076
+2026-07-16 14:04:24,116 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000144
+2026-07-16 14:04:30,031 - INFO - Weighted Accuracies: All 0.8719 | Old 0.8627 | New 0.8765
+2026-07-16 14:04:31,419 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:04:43,333 - INFO - len of image selected samples: 408
+2026-07-16 14:04:43,334 - INFO - len of text selected samples: 407
+2026-07-16 14:05:05,757 - INFO - Epoch 71/100, Total Loss: 4.6560, Base Loss: 2.8416, Con Loss: 1.2055, Pseudo Loss Image: 0.1668, Pseudo Loss Text: 0.1411, Lcc Image: 0.0352, Lcc Text: 0.0400
+2026-07-16 14:05:05,757 - INFO -    Param Group: classifier_head, Learning Rate: 0.019800
+2026-07-16 14:05:05,757 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000139
+2026-07-16 14:05:11,702 - INFO - Weighted Accuracies: All 0.8732 | Old 0.8627 | New 0.8784
+2026-07-16 14:05:13,635 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:05:25,626 - INFO - len of image selected samples: 407
+2026-07-16 14:05:25,626 - INFO - len of text selected samples: 408
+2026-07-16 14:05:48,053 - INFO - Epoch 72/100, Total Loss: 4.7383, Base Loss: 2.8962, Con Loss: 1.1958, Pseudo Loss Image: 0.2309, Pseudo Loss Text: 0.1226, Lcc Image: 0.0346, Lcc Text: 0.0387
+2026-07-16 14:05:48,054 - INFO -    Param Group: classifier_head, Learning Rate: 0.018554
+2026-07-16 14:05:48,054 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000133
+2026-07-16 14:05:54,024 - INFO - Weighted Accuracies: All 0.8732 | Old 0.8706 | New 0.8745
+2026-07-16 14:05:55,365 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:06:07,359 - INFO - len of image selected samples: 407
+2026-07-16 14:06:07,360 - INFO - len of text selected samples: 408
+2026-07-16 14:06:29,998 - INFO - Epoch 73/100, Total Loss: 4.6506, Base Loss: 2.8106, Con Loss: 1.1978, Pseudo Loss Image: 0.1944, Pseudo Loss Text: 0.1532, Lcc Image: 0.0346, Lcc Text: 0.0391
+2026-07-16 14:06:29,999 - INFO -    Param Group: classifier_head, Learning Rate: 0.017340
+2026-07-16 14:06:29,999 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000128
+2026-07-16 14:06:35,925 - INFO - Weighted Accuracies: All 0.8745 | Old 0.8745 | New 0.8745
+2026-07-16 14:06:37,299 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:06:49,068 - INFO - len of image selected samples: 406
+2026-07-16 14:06:49,068 - INFO - len of text selected samples: 408
+2026-07-16 14:07:11,703 - INFO - Epoch 74/100, Total Loss: 4.6986, Base Loss: 2.8144, Con Loss: 1.2055, Pseudo Loss Image: 0.2449, Pseudo Loss Text: 0.1296, Lcc Image: 0.0351, Lcc Text: 0.0409
+2026-07-16 14:07:11,703 - INFO -    Param Group: classifier_head, Learning Rate: 0.016158
+2026-07-16 14:07:11,703 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000122
+2026-07-16 14:07:17,671 - INFO - Weighted Accuracies: All 0.8693 | Old 0.8667 | New 0.8706
+2026-07-16 14:07:19,200 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:07:31,016 - INFO - len of image selected samples: 407
+2026-07-16 14:07:31,016 - INFO - len of text selected samples: 408
+2026-07-16 14:07:53,637 - INFO - Epoch 75/100, Total Loss: 4.6892, Base Loss: 2.8093, Con Loss: 1.2250, Pseudo Loss Image: 0.2054, Pseudo Loss Text: 0.1526, Lcc Image: 0.0335, Lcc Text: 0.0407
+2026-07-16 14:07:53,638 - INFO -    Param Group: classifier_head, Learning Rate: 0.015011
+2026-07-16 14:07:53,638 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000117
+2026-07-16 14:07:59,538 - INFO - Weighted Accuracies: All 0.8719 | Old 0.8745 | New 0.8706
+2026-07-16 14:08:00,870 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:08:12,745 - INFO - len of image selected samples: 406
+2026-07-16 14:08:12,745 - INFO - len of text selected samples: 408
+2026-07-16 14:08:35,188 - INFO - Epoch 76/100, Total Loss: 4.6149, Base Loss: 2.7987, Con Loss: 1.2081, Pseudo Loss Image: 0.2018, Pseudo Loss Text: 0.1067, Lcc Image: 0.0341, Lcc Text: 0.0407
+2026-07-16 14:08:35,189 - INFO -    Param Group: classifier_head, Learning Rate: 0.013899
+2026-07-16 14:08:35,189 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000112
+2026-07-16 14:08:41,123 - INFO - Weighted Accuracies: All 0.8693 | Old 0.8627 | New 0.8725
+2026-07-16 14:08:42,496 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:08:54,664 - INFO - len of image selected samples: 407
+2026-07-16 14:08:54,664 - INFO - len of text selected samples: 408
+2026-07-16 14:09:17,331 - INFO - Epoch 77/100, Total Loss: 4.8583, Base Loss: 2.9013, Con Loss: 1.2608, Pseudo Loss Image: 0.2487, Pseudo Loss Text: 0.1496, Lcc Image: 0.0345, Lcc Text: 0.0399
+2026-07-16 14:09:17,331 - INFO -    Param Group: classifier_head, Learning Rate: 0.012824
+2026-07-16 14:09:17,332 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000107
+2026-07-16 14:09:23,561 - INFO - Weighted Accuracies: All 0.8706 | Old 0.8627 | New 0.8745
+2026-07-16 14:09:24,911 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:09:36,854 - INFO - len of image selected samples: 407
+2026-07-16 14:09:36,855 - INFO - len of text selected samples: 406
+2026-07-16 14:09:59,263 - INFO - Epoch 78/100, Total Loss: 4.7162, Base Loss: 2.8841, Con Loss: 1.2349, Pseudo Loss Image: 0.1521, Pseudo Loss Text: 0.1348, Lcc Image: 0.0351, Lcc Text: 0.0425
+2026-07-16 14:09:59,264 - INFO -    Param Group: classifier_head, Learning Rate: 0.011786
+2026-07-16 14:09:59,264 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000103
+2026-07-16 14:10:05,229 - INFO - Weighted Accuracies: All 0.8693 | Old 0.8627 | New 0.8725
+2026-07-16 14:10:06,925 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:10:18,767 - INFO - len of image selected samples: 407
+2026-07-16 14:10:18,767 - INFO - len of text selected samples: 406
+2026-07-16 14:10:41,486 - INFO - Epoch 79/100, Total Loss: 4.7491, Base Loss: 2.8768, Con Loss: 1.2172, Pseudo Loss Image: 0.2201, Pseudo Loss Text: 0.1415, Lcc Image: 0.0354, Lcc Text: 0.0380
+2026-07-16 14:10:41,486 - INFO -    Param Group: classifier_head, Learning Rate: 0.010787
+2026-07-16 14:10:41,486 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000098
+2026-07-16 14:10:47,423 - INFO - Weighted Accuracies: All 0.8745 | Old 0.8745 | New 0.8745
+2026-07-16 14:10:48,844 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:11:00,701 - INFO - len of image selected samples: 408
+2026-07-16 14:11:00,701 - INFO - len of text selected samples: 406
+2026-07-16 14:11:23,139 - INFO - Epoch 80/100, Total Loss: 4.5977, Base Loss: 2.8232, Con Loss: 1.2134, Pseudo Loss Image: 0.1559, Pseudo Loss Text: 0.0982, Lcc Image: 0.0360, Lcc Text: 0.0408
+2026-07-16 14:11:23,139 - INFO -    Param Group: classifier_head, Learning Rate: 0.009827
+2026-07-16 14:11:23,139 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000094
+2026-07-16 14:11:29,109 - INFO - Weighted Accuracies: All 0.8745 | Old 0.8745 | New 0.8745
+2026-07-16 14:11:30,535 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:11:42,486 - INFO - len of image selected samples: 407
+2026-07-16 14:11:42,486 - INFO - len of text selected samples: 407
+2026-07-16 14:12:04,821 - INFO - Epoch 81/100, Total Loss: 4.5489, Base Loss: 2.8052, Con Loss: 1.1863, Pseudo Loss Image: 0.1400, Pseudo Loss Text: 0.1173, Lcc Image: 0.0344, Lcc Text: 0.0406
+2026-07-16 14:12:04,822 - INFO -    Param Group: classifier_head, Learning Rate: 0.008907
+2026-07-16 14:12:04,822 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000090
+2026-07-16 14:12:10,812 - INFO - Weighted Accuracies: All 0.8771 | Old 0.8745 | New 0.8784
+2026-07-16 14:12:12,628 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:12:13,992 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.8771 | Old 0.8745 | New 0.8784)
+2026-07-16 14:12:25,977 - INFO - len of image selected samples: 407
+2026-07-16 14:12:25,978 - INFO - len of text selected samples: 407
+2026-07-16 14:12:48,661 - INFO - Epoch 82/100, Total Loss: 4.5476, Base Loss: 2.7887, Con Loss: 1.1746, Pseudo Loss Image: 0.1746, Pseudo Loss Text: 0.1178, Lcc Image: 0.0344, Lcc Text: 0.0386
+2026-07-16 14:12:48,662 - INFO -    Param Group: classifier_head, Learning Rate: 0.008029
+2026-07-16 14:12:48,662 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000086
+2026-07-16 14:12:54,824 - INFO - Weighted Accuracies: All 0.8771 | Old 0.8784 | New 0.8765
+2026-07-16 14:12:56,779 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:13:08,775 - INFO - len of image selected samples: 408
+2026-07-16 14:13:08,775 - INFO - len of text selected samples: 408
+2026-07-16 14:13:31,310 - INFO - Epoch 83/100, Total Loss: 4.6510, Base Loss: 2.7676, Con Loss: 1.1998, Pseudo Loss Image: 0.2382, Pseudo Loss Text: 0.1430, Lcc Image: 0.0344, Lcc Text: 0.0413
+2026-07-16 14:13:31,311 - INFO -    Param Group: classifier_head, Learning Rate: 0.007194
+2026-07-16 14:13:31,311 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000082
+2026-07-16 14:13:37,255 - INFO - Weighted Accuracies: All 0.8758 | Old 0.8784 | New 0.8745
+2026-07-16 14:13:38,709 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:13:50,609 - INFO - len of image selected samples: 408
+2026-07-16 14:13:50,609 - INFO - len of text selected samples: 408
+2026-07-16 14:14:13,107 - INFO - Epoch 84/100, Total Loss: 4.8138, Base Loss: 2.9213, Con Loss: 1.2286, Pseudo Loss Image: 0.2042, Pseudo Loss Text: 0.1543, Lcc Image: 0.0348, Lcc Text: 0.0415
+2026-07-16 14:14:13,108 - INFO -    Param Group: classifier_head, Learning Rate: 0.006401
+2026-07-16 14:14:13,108 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000078
+2026-07-16 14:14:19,090 - INFO - Weighted Accuracies: All 0.8732 | Old 0.8745 | New 0.8725
+2026-07-16 14:14:20,513 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:14:32,467 - INFO - len of image selected samples: 408
+2026-07-16 14:14:32,467 - INFO - len of text selected samples: 408
+2026-07-16 14:14:54,944 - INFO - Epoch 85/100, Total Loss: 4.6747, Base Loss: 2.8359, Con Loss: 1.1998, Pseudo Loss Image: 0.2118, Pseudo Loss Text: 0.1399, Lcc Image: 0.0339, Lcc Text: 0.0379
+2026-07-16 14:14:54,944 - INFO -    Param Group: classifier_head, Learning Rate: 0.005653
+2026-07-16 14:14:54,945 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000075
+2026-07-16 14:15:00,919 - INFO - Weighted Accuracies: All 0.8745 | Old 0.8706 | New 0.8765
+2026-07-16 14:15:02,739 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:15:14,636 - INFO - len of image selected samples: 408
+2026-07-16 14:15:14,636 - INFO - len of text selected samples: 408
+2026-07-16 14:15:37,305 - INFO - Epoch 86/100, Total Loss: 4.7223, Base Loss: 2.8597, Con Loss: 1.2191, Pseudo Loss Image: 0.2090, Pseudo Loss Text: 0.1312, Lcc Image: 0.0339, Lcc Text: 0.0419
+2026-07-16 14:15:37,306 - INFO -    Param Group: classifier_head, Learning Rate: 0.004949
+2026-07-16 14:15:37,306 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000072
+2026-07-16 14:15:43,257 - INFO - Weighted Accuracies: All 0.8719 | Old 0.8706 | New 0.8725
+2026-07-16 14:15:46,736 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:15:58,748 - INFO - len of image selected samples: 408
+2026-07-16 14:15:58,748 - INFO - len of text selected samples: 408
+2026-07-16 14:16:21,508 - INFO - Epoch 87/100, Total Loss: 4.7131, Base Loss: 2.8755, Con Loss: 1.2251, Pseudo Loss Image: 0.1634, Pseudo Loss Text: 0.1465, Lcc Image: 0.0343, Lcc Text: 0.0414
+2026-07-16 14:16:21,508 - INFO -    Param Group: classifier_head, Learning Rate: 0.004290
+2026-07-16 14:16:21,508 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000069
+2026-07-16 14:16:27,482 - INFO - Weighted Accuracies: All 0.8745 | Old 0.8745 | New 0.8745
+2026-07-16 14:16:28,832 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:16:40,708 - INFO - len of image selected samples: 408
+2026-07-16 14:16:40,708 - INFO - len of text selected samples: 408
+2026-07-16 14:17:03,435 - INFO - Epoch 88/100, Total Loss: 4.6268, Base Loss: 2.8387, Con Loss: 1.2275, Pseudo Loss Image: 0.1768, Pseudo Loss Text: 0.1003, Lcc Image: 0.0342, Lcc Text: 0.0367
+2026-07-16 14:17:03,435 - INFO -    Param Group: classifier_head, Learning Rate: 0.003678
+2026-07-16 14:17:03,435 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000066
+2026-07-16 14:17:09,450 - INFO - Weighted Accuracies: All 0.8758 | Old 0.8784 | New 0.8745
+2026-07-16 14:17:11,194 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:17:23,168 - INFO - len of image selected samples: 408
+2026-07-16 14:17:23,168 - INFO - len of text selected samples: 408
+2026-07-16 14:17:45,617 - INFO - Epoch 89/100, Total Loss: 4.6607, Base Loss: 2.8735, Con Loss: 1.2102, Pseudo Loss Image: 0.1789, Pseudo Loss Text: 0.1007, Lcc Image: 0.0339, Lcc Text: 0.0404
+2026-07-16 14:17:45,617 - INFO -    Param Group: classifier_head, Learning Rate: 0.003112
+2026-07-16 14:17:45,617 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000064
+2026-07-16 14:17:51,558 - INFO - Weighted Accuracies: All 0.8758 | Old 0.8745 | New 0.8765
+2026-07-16 14:17:53,234 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:18:05,161 - INFO - len of image selected samples: 408
+2026-07-16 14:18:05,161 - INFO - len of text selected samples: 408
+2026-07-16 14:18:27,496 - INFO - Epoch 90/100, Total Loss: 4.6003, Base Loss: 2.8264, Con Loss: 1.1738, Pseudo Loss Image: 0.1917, Pseudo Loss Text: 0.1057, Lcc Image: 0.0349, Lcc Text: 0.0408
+2026-07-16 14:18:27,497 - INFO -    Param Group: classifier_head, Learning Rate: 0.002594
+2026-07-16 14:18:27,497 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000061
+2026-07-16 14:18:33,487 - INFO - Weighted Accuracies: All 0.8745 | Old 0.8706 | New 0.8765
+2026-07-16 14:18:34,807 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:18:46,798 - INFO - len of image selected samples: 408
+2026-07-16 14:18:46,799 - INFO - len of text selected samples: 408
+2026-07-16 14:19:09,390 - INFO - Epoch 91/100, Total Loss: 4.5652, Base Loss: 2.7289, Con Loss: 1.1731, Pseudo Loss Image: 0.2401, Pseudo Loss Text: 0.1180, Lcc Image: 0.0336, Lcc Text: 0.0427
+2026-07-16 14:19:09,390 - INFO -    Param Group: classifier_head, Learning Rate: 0.002123
+2026-07-16 14:19:09,391 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000059
+2026-07-16 14:19:15,316 - INFO - Weighted Accuracies: All 0.8771 | Old 0.8706 | New 0.8804
+2026-07-16 14:19:16,638 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:19:28,585 - INFO - len of image selected samples: 408
+2026-07-16 14:19:28,586 - INFO - len of text selected samples: 408
+2026-07-16 14:19:50,925 - INFO - Epoch 92/100, Total Loss: 4.6684, Base Loss: 2.8278, Con Loss: 1.2094, Pseudo Loss Image: 0.2305, Pseudo Loss Text: 0.1014, Lcc Image: 0.0339, Lcc Text: 0.0409
+2026-07-16 14:19:50,925 - INFO -    Param Group: classifier_head, Learning Rate: 0.001701
+2026-07-16 14:19:50,925 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000057
+2026-07-16 14:19:56,861 - INFO - Weighted Accuracies: All 0.8784 | Old 0.8745 | New 0.8804
+2026-07-16 14:19:59,104 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:20:00,462 - INFO - Saved best model to exp/flowers_prompt=9-2026-07-16-13-17/models/best_model.pth (All 0.8784 | Old 0.8745 | New 0.8804)
+2026-07-16 14:20:12,269 - INFO - len of image selected samples: 408
+2026-07-16 14:20:12,270 - INFO - len of text selected samples: 408
+2026-07-16 14:20:34,599 - INFO - Epoch 93/100, Total Loss: 4.6069, Base Loss: 2.8032, Con Loss: 1.1971, Pseudo Loss Image: 0.2169, Pseudo Loss Text: 0.0913, Lcc Image: 0.0336, Lcc Text: 0.0410
+2026-07-16 14:20:34,600 - INFO -    Param Group: classifier_head, Learning Rate: 0.001327
+2026-07-16 14:20:34,600 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000056
+2026-07-16 14:20:40,545 - INFO - Weighted Accuracies: All 0.8784 | Old 0.8745 | New 0.8804
+2026-07-16 14:20:42,513 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:20:54,389 - INFO - len of image selected samples: 408
+2026-07-16 14:20:54,390 - INFO - len of text selected samples: 408
+2026-07-16 14:21:17,074 - INFO - Epoch 94/100, Total Loss: 4.7634, Base Loss: 2.8932, Con Loss: 1.2109, Pseudo Loss Image: 0.2296, Pseudo Loss Text: 0.1302, Lcc Image: 0.0336, Lcc Text: 0.0413
+2026-07-16 14:21:17,075 - INFO -    Param Group: classifier_head, Learning Rate: 0.001003
+2026-07-16 14:21:17,076 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000054
+2026-07-16 14:21:23,036 - INFO - Weighted Accuracies: All 0.8784 | Old 0.8745 | New 0.8804
+2026-07-16 14:21:24,694 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:21:36,584 - INFO - len of image selected samples: 408
+2026-07-16 14:21:36,585 - INFO - len of text selected samples: 408
+2026-07-16 14:21:59,240 - INFO - Epoch 95/100, Total Loss: 4.6873, Base Loss: 2.8963, Con Loss: 1.2141, Pseudo Loss Image: 0.1569, Pseudo Loss Text: 0.1230, Lcc Image: 0.0332, Lcc Text: 0.0410
+2026-07-16 14:21:59,240 - INFO -    Param Group: classifier_head, Learning Rate: 0.000727
+2026-07-16 14:21:59,240 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000053
+2026-07-16 14:22:05,232 - INFO - Weighted Accuracies: All 0.8784 | Old 0.8745 | New 0.8804
+2026-07-16 14:22:06,995 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:22:18,979 - INFO - len of image selected samples: 408
+2026-07-16 14:22:18,979 - INFO - len of text selected samples: 408
+2026-07-16 14:22:41,546 - INFO - Epoch 96/100, Total Loss: 4.7649, Base Loss: 2.9350, Con Loss: 1.2036, Pseudo Loss Image: 0.2110, Pseudo Loss Text: 0.1133, Lcc Image: 0.0338, Lcc Text: 0.0417
+2026-07-16 14:22:41,546 - INFO -    Param Group: classifier_head, Learning Rate: 0.000502
+2026-07-16 14:22:41,546 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000052
+2026-07-16 14:22:47,627 - INFO - Weighted Accuracies: All 0.8784 | Old 0.8745 | New 0.8804
+2026-07-16 14:22:49,054 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:23:01,056 - INFO - len of image selected samples: 408
+2026-07-16 14:23:01,056 - INFO - len of text selected samples: 408
+2026-07-16 14:23:23,550 - INFO - Epoch 97/100, Total Loss: 4.5518, Base Loss: 2.8081, Con Loss: 1.1907, Pseudo Loss Image: 0.1492, Pseudo Loss Text: 0.0959, Lcc Image: 0.0346, Lcc Text: 0.0424
+2026-07-16 14:23:23,551 - INFO -    Param Group: classifier_head, Learning Rate: 0.000326
+2026-07-16 14:23:23,551 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000051
+2026-07-16 14:23:29,503 - INFO - Weighted Accuracies: All 0.8784 | Old 0.8745 | New 0.8804
+2026-07-16 14:23:30,766 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:23:42,718 - INFO - len of image selected samples: 408
+2026-07-16 14:23:42,719 - INFO - len of text selected samples: 408
+2026-07-16 14:24:05,119 - INFO - Epoch 98/100, Total Loss: 4.6591, Base Loss: 2.8306, Con Loss: 1.1934, Pseudo Loss Image: 0.2170, Pseudo Loss Text: 0.1167, Lcc Image: 0.0349, Lcc Text: 0.0404
+2026-07-16 14:24:05,119 - INFO -    Param Group: classifier_head, Learning Rate: 0.000201
+2026-07-16 14:24:05,119 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000050
+2026-07-16 14:24:11,174 - INFO - Weighted Accuracies: All 0.8758 | Old 0.8745 | New 0.8765
+2026-07-16 14:24:12,670 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:24:24,615 - INFO - len of image selected samples: 408
+2026-07-16 14:24:24,615 - INFO - len of text selected samples: 408
+2026-07-16 14:24:47,416 - INFO - Epoch 99/100, Total Loss: 4.4263, Base Loss: 2.7231, Con Loss: 1.1498, Pseudo Loss Image: 0.1560, Pseudo Loss Text: 0.1043, Lcc Image: 0.0332, Lcc Text: 0.0400
+2026-07-16 14:24:47,416 - INFO -    Param Group: classifier_head, Learning Rate: 0.000125
+2026-07-16 14:24:47,416 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000050
+2026-07-16 14:24:53,387 - INFO - Weighted Accuracies: All 0.8758 | Old 0.8745 | New 0.8765
+2026-07-16 14:24:54,711 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
+2026-07-16 14:25:06,635 - INFO - len of image selected samples: 408
+2026-07-16 14:25:06,635 - INFO - len of text selected samples: 408
+2026-07-16 14:25:29,095 - INFO - Epoch 100/100, Total Loss: 4.4186, Base Loss: 2.7071, Con Loss: 1.1702, Pseudo Loss Image: 0.1766, Pseudo Loss Text: 0.0701, Lcc Image: 0.0338, Lcc Text: 0.0399
+2026-07-16 14:25:29,096 - INFO -    Param Group: classifier_head, Learning Rate: 0.000100
+2026-07-16 14:25:29,096 - INFO -    Param Group: prompt_and_adapter, Learning Rate: 0.000050
+2026-07-16 14:25:35,095 - INFO - Weighted Accuracies: All 0.8758 | Old 0.8745 | New 0.8765
+2026-07-16 14:25:36,864 - INFO - Saved checkpoint to exp/flowers_prompt=9-2026-07-16-13-17/models/checkpoint.pth
