@@ -1,7 +1,7 @@
 # DCMP: Dual-consistency Cross-modal Prompting for Open-World Semi-Supervised Learning
 
 
-![DCMP framework](assets/framework.png)
+![DCMP framework](assets/fig2_framework.jpg)
 
 This repository contains only the main DCMP training and evaluation pipeline. Ablation and hyperparameter-sensitivity scripts/options are intentionally excluded.
 
